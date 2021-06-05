@@ -1,0 +1,19 @@
+{
+  "name": "fe",
+  "version": "1.0.0",
+  "description": "Front End Challenge to get a List of Banks",
+  "main": "index.html",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "chriszackpinto",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.0.0-beta.2"
+  },
+  "dependencies": {
+    "core-js": "^3.14.0",
+    "regenerator-runtime": "^0.13.7"
+  }
+}
