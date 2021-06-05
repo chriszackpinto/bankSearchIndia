@@ -45,7 +45,6 @@ export const loadBankList = async function (city) {
 };
 export const getListResultsPage = function (page = state.page) {
   state.page = page;
-
   const start = (page - 1) * state.resultsPerPage;
   const end = page * state.resultsPerPage;
 

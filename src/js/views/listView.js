@@ -8,7 +8,11 @@ class ListView extends View {
   getCity() {
     return this._city.value;
   }
-
+  addHandlerRender(handler) {
+    window.addEventListener("load", function (e) {
+      handler();
+    });
+  }
   addHandlerSelect(handler) {
     this._city.addEventListener("change", function (e) {
       handler();

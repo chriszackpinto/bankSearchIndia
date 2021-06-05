@@ -2,6 +2,17 @@ import View from "./View";
 
 class PaginationView extends View {
   _parentElement = document.querySelector(".pagination");
+  _resultLength = document.getElementById("total-results");
+
+  getLength() {
+    return this._resultLength.value;
+  }
+
+  addHandlerSelect(handler) {
+    this._resultLength.addEventListener("change", function (e) {
+      handler();
+    });
+  }
 
   addHandlerClick(handler) {
     this._parentElement.addEventListener("click", function (e) {
@@ -19,12 +30,12 @@ class PaginationView extends View {
       this._data.results.length / this._data.resultsPerPage
     );
 
-    const prevBtn = ` <button data-goto='${
+    const prevBtn = `<button data-goto='${
       curPage - 1
     }' class="btn-page pagination__btn--prev">
       <span>Page ${curPage - 1}</span>
     </button>`;
-    const nextBtn = `  <button data-goto='${
+    const nextBtn = `<button data-goto='${
       curPage + 1
     }' class="btn-page pagination__btn--next">
       <span>Page ${curPage + 1}</span>
