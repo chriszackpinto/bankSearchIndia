@@ -1,27 +1,32 @@
 import View from "./View";
 
-class ListView extends View {
+class SearchView extends View {
   // _data; //?
   _city = document.getElementById("city");
   _parentElement = document.querySelector(".table");
   _searchInput = document.getElementById("search-input");
 
-  getCity() {
-    return this._city.value;
-  }
-  addHandlerRender(handler) {
-    window.addEventListener("load", function (e) {
-      handler();
-    });
-  }
-  addHandlerSelect(handler) {
-    this._city.addEventListener("change", function (e) {
-      handler();
-    });
+  //   getCity() {
+  //     return this._city.value;
+  //   }
+  //   addHandlerRender(handler) {
+  //     window.addEventListener("load", function (e) {
+  //       handler();
+  //     });
+  //   }
+  //   addHandlerSelect(handler) {
+  //     this._city.addEventListener("change", function (e) {
+  //       handler();
+  //     });
+  //   }
+
+  getQuery() {
+    return this._searchInput.value;
   }
 
-  addHandlerInput(handler) {
+  addHandlerInput() {
     this._searchInput.addEventListener("keyup", function (e) {
+      //   console.log(e.target.value);
       handler();
     });
   }
@@ -62,4 +67,4 @@ class ListView extends View {
   `;
   }
 }
-export default new ListView();
+export default new SearchView();
