@@ -16,14 +16,6 @@ const getBankList = async function () {
     listView.render(model.getListResultsPage()); //Render initial results
 
     paginationView.render(model.state); //Render pagination buttons
-    // console.log(
-    //   model.state.results
-    //     .map((v) => {
-    //       const values = Object.values(v);
-    //       values.filter()
-    //     })
-    //     .slice(0, 10)
-    // );
   } catch (error) {
     console.error(`${error.message}`);
   }
@@ -43,6 +35,7 @@ const listLength = function () {
 };
 
 const getSearchResults = function () {
+  //Se WIP
   const query = searchView.getQuery();
 
   // console.log(model.state.searchResults);
@@ -50,11 +43,10 @@ const getSearchResults = function () {
 };
 
 (function () {
-  listView.addHandlerSelect(getBankList);
-  listView.addHandlerRender(getBankList);
-  // paginationView.addHandlerSelect(getBankList); not needed since rerenders
-  paginationView.addHandlerSelect(listLength);
-  paginationView.addHandlerClick(controlPagination);
+  listView.addHandlerSelect(getBankList); //Render on city select
+  listView.addHandlerRender(getBankList); // Render on page load
+  paginationView.addHandlerSelect(listLength); //Render on result size select
+  paginationView.addHandlerClick(controlPagination); //Render buttons
 
-  listView.addHandlerInput(getSearchResults); //Search
+  listView.addHandlerInput(getSearchResults); //Search WIP
 })();
