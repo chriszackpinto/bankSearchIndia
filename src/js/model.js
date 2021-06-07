@@ -56,16 +56,17 @@ export const getListResultsPage = function (page = state.page) {
 export const loadSearchResults = function (query) {
   state.query = query.toUpperCase();
 
-  state.searchResults = state.results.filter((bank) =>
-    Object.values(bank).includes(state.query)
-  );
+  state.searchResults = state.results.filter((bank) => {
+    const fieldValues = Object.values(bank);
+    const match = fieldValues.some(() => fieldValues.includes(state.query));
+    console.log(match);
+    return match;
+  });
 
-  console.log(Object.values(bank).includes(state.query));
-  // ADD FILTER BEFORE MAP
-
-  // state.results.filter(function (el) {
-  //   return Object.values(el).includes(query.toUpperCase());
-  // })
+  // console.log(Object.values(bank).includes(state.query));
+  // state.searchResults = state.results.filter((bank) =>
+  //   Object.values(bank).includes(state.query)
+  // );
 };
 
 //Test Search
