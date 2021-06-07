@@ -1,11 +1,10 @@
 import View from "./View";
 
 class ListView extends View {
-  // _data; //?
   _city = document.getElementById("city");
   _parentElement = document.querySelector(".table");
   _searchInput = document.getElementById("search-input");
-
+  _errorMessage = "No match found, please try with a different search!";
   getCity() {
     return this._city.value;
   }
@@ -29,21 +28,24 @@ class ListView extends View {
   _generateMarkup() {
     const tableHead = `
     <table>
-      <tr>
-        <th>IFSC</th>
-        <th>BANK ID</th>
-        <th>BRANCH</th>
-        <th>ADDRESS</th>
-        <th>CITY</th>
-        <th>DISTRICT</th>
-        <th>STATE</th>
-        <th>BANK NAME</th>
-        <th>BOOKMARK</th>
-      </tr>`;
+      <thead>
+        <tr>
+          <th>IFSC</th>
+          <th>BANK ID</th>
+          <th>BRANCH</th>
+          <th>ADDRESS</th>
+          <th>CITY</th>
+          <th>DISTRICT</th>
+          <th>STATE</th>
+          <th>BANK NAME</th>
+          <th>BOOKMARK</th>
+        </tr>
+      </thead>
+      <tbody>`;
 
     return `${tableHead}${this._data
       .map(this._generateMarkupPreview)
-      .join(" ")}</table>`;
+      .join(" ")}</tbody></table>`;
   }
 
   _generateMarkupPreview(result) {
@@ -58,7 +60,6 @@ class ListView extends View {
         <td>${result.state}</td>
         <td>${result.bankName}</td>
       </tr>
-  
   `;
   }
 }

@@ -5,22 +5,21 @@ import paginationView from "./views/paginationView";
 //polyfill es6 syntax to es5
 import "core-js/stable";
 import "regenerator-runtime/runtime";
+import View from "./views/View";
 
 const getBankList = async function () {
   try {
     const city = listView.getCity();
     model.state.resultsPerPage = paginationView.getLength();
 
-    await model.loadBankList(city); //Load search results
+    await model.loadBankList(city); //Load search results from API City
 
-    listView.render(model.getListResultsPage()); //Render initial results
-
-    paginationView.render(model.state); //Render pagination buttons
+    // renderResults();
   } catch (error) {
-    console.error(`${error.message}`);
+    // console.error(`${error.message}`);
+    listView.renderError(`${error.message}`);
   }
 };
-// getBankList();
 
 const controlPagination = function (goToPage) {
   listView.render(model.getListResultsPage(goToPage)); //Render NEW results
@@ -36,14 +35,15 @@ const listLength = function () {
 };
 
 const getSearchResults = function () {
-  //Se WIP
   const query = searchView.getQuery();
-
-  // searchView.render(model.loadSearchResults(query));
   model.loadSearchResults(query);
 
-  // console.log("res below");
-  console.log(model.state.searchResults);
+  renderResults();
+};
+
+const renderResults = function () {
+  listView.render(model.getListResultsPage()); //Render initial results
+  paginationView.render(model.state); //Render pagination buttons
 };
 
 (function () {

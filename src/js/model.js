@@ -1,13 +1,14 @@
+import { _ } from "core-js";
 import { API_URL, TIMEOUT_SEC } from "./config.js";
 
 export const state = {
   page: 1,
   resultsPerPage: 25,
-  query: "",
+  query: " ",
   results: [],
   searchResults: [],
 };
-
+// Timeout for API delay
 const timeout = function (seconds) {
   return new Promise((_, reject) => {
     setTimeout(function () {
@@ -17,7 +18,7 @@ const timeout = function (seconds) {
     }, seconds * 1000);
   });
 };
-
+// Load city bank list
 export const loadBankList = async function (city) {
   try {
     const res = await Promise.race([
@@ -29,18 +30,16 @@ export const loadBankList = async function (city) {
 
     state.results = data.map((el) => {
       return {
-        ifsc: el.ifsc,
-        bankID: el.bank_id,
-        branch: el.branch,
-        address: el.address,
-        city: el.city,
-        district: el.district,
-        state: el.state,
-        bankName: el.bank_name,
+        ifsc: el.ifsc + "",
+        bankID: el.bank_id + "",
+        branch: el.branch + "",
+        address: el.address + "",
+        city: el.city + "",
+        district: el.district + "",
+        state: el.state + "",
+        bankName: el.bank_name + "",
       };
     });
-
-    console.log(state.results);
   } catch (error) {
     throw error;
   }
@@ -50,30 +49,15 @@ export const getListResultsPage = function (page = state.page) {
   const start = (page - 1) * state.resultsPerPage;
   const end = page * state.resultsPerPage;
 
-  return state.results.slice(start, end); // might have to chane to filtered list after implementing search
+  return state.searchResults.slice(start, end);
 };
 
 export const loadSearchResults = function (query) {
   state.query = query.toUpperCase();
 
-  state.searchResults = state.results.filter((bank) => {
-    const fieldValues = Object.values(bank);
-    const match = fieldValues.some(() => fieldValues.includes(state.query));
-    console.log(match);
-    return match;
-  });
+  if (state.results.length === 0) return;
 
-  // console.log(Object.values(bank).includes(state.query));
-  // state.searchResults = state.results.filter((bank) =>
-  //   Object.values(bank).includes(state.query)
-  // );
+  state.searchResults = state.results.filter((bank) =>
+    Object.values(bank).some((_) => _.includes(state.query))
+  );
 };
-
-//Test Search
-// export const getSearchResultsPage = function (page = state.page) {
-//   state.page = page;
-//   const start = (page - 1) * state.resultsPerPage;
-//   const end = page * state.resultsPerPage;
-
-//   return state.results.slice(start, end);
-// };

@@ -19,7 +19,6 @@ class PaginationView extends View {
       const btn = e.target.closest(".btn-page");
       if (!btn) return;
       const goToPage = +btn.dataset.goto;
-      // console.log("hello there");
       handler(goToPage);
     });
   }
@@ -27,7 +26,7 @@ class PaginationView extends View {
   _generateMarkup() {
     const curPage = this._data.page;
     const numPages = Math.ceil(
-      this._data.results.length / this._data.resultsPerPage
+      this._data.searchResults.length / this._data.resultsPerPage
     );
 
     const prevBtn = `<button data-goto='${

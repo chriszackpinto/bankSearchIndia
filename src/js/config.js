@@ -12,3 +12,11 @@ export const TIMEOUT_SEC = 10;
 //   state: "MAHARASHTRA",
 //   bank_name: "ABHYUDAYA COOPERATIVE BANK LIMITED",
 // };
+
+// https://vast-shore-74260.herokuapp.com/banks?city=MUMBAI
+
+// Search screen > List of banks
+// Able to search by text for banks
+// Pagination with size selection
+// Mark fav banks
+// API cached
