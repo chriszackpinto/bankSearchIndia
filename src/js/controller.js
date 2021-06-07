@@ -2,7 +2,7 @@ import * as model from "./model";
 import listView from "./views/listView";
 import searchView from "./views/searchView";
 import paginationView from "./views/paginationView";
-
+//polyfill es6 syntax to es5
 import "core-js/stable";
 import "regenerator-runtime/runtime";
 
@@ -31,15 +31,19 @@ const controlPagination = function (goToPage) {
 const listLength = function () {
   model.state.page = 1;
   model.state.resultsPerPage = paginationView.getLength();
-  listView.render(model.getListResultsPage()); //Render initial results
+  listView.render(model.getListResultsPage(1)); //Render initial results
+  paginationView.render(model.state);
 };
 
 const getSearchResults = function () {
   //Se WIP
   const query = searchView.getQuery();
 
-  // console.log(model.state.searchResults);
-  searchView.render(model.loadSearchResults(query));
+  // searchView.render(model.loadSearchResults(query));
+  model.loadSearchResults(query);
+
+  // console.log("res below");
+  console.log(model.state.searchResults);
 };
 
 (function () {
