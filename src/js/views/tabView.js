@@ -1,7 +1,7 @@
 class TabView {
   tabsContainer = document.querySelector(".operations__tab-container");
 
-  addHandlerTab() {
+  addHandlerTab(handler) {
     this.tabsContainer.addEventListener("click", function (e) {
       const clicked = e.target.closest(".operations__tab");
       if (!clicked) return;
@@ -19,6 +19,8 @@ class TabView {
       document
         .querySelector(`.operations__content--${clicked.dataset.tab}`)
         .classList.add("operations__content--active");
+
+      handler();
     });
   }
 }

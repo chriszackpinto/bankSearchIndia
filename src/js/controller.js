@@ -5,6 +5,7 @@ import listView from "./views/listView";
 import searchView from "./views/searchView";
 import tabView from "./views/tabView";
 import paginationView from "./views/paginationView";
+import bookmarksView from "./views/bookmarksView";
 //polyfill es6 syntax to es5
 import "core-js/stable";
 import "regenerator-runtime/runtime";
@@ -16,8 +17,6 @@ const getBankList = async function () {
     model.state.resultsPerPage = paginationView.getLength();
 
     await model.loadBankList(city); //Load search results from API City
-
-    // renderResults();
   } catch (error) {
     // console.error(`${error.message}`);
     listView.renderError(`${error.message}`);
@@ -56,6 +55,12 @@ const controlBookmark = function (id) {
       model.deleteBookmark(id);
   });
   console.log(model.state.bookmarks);
+  bookmarkList();
+};
+
+const bookmarkList = function () {
+  bookmarksView.render(model.state.bookmarks); //render bookmark list on tab change
+  listView.render(model.getListResultsPage()); //render search list on tab change
 };
 
 (function () {
@@ -63,10 +68,12 @@ const controlBookmark = function (id) {
   listView.addHandlerRender(getBankList); // Render on page load
   listView.addHandlerBookmark(controlBookmark); //Add Bookmark
 
+  bookmarksView.addHandlerBookmark(controlBookmark); //Add Bookmark
+
   paginationView.addHandlerSelect(listLength); //Render on result size select
   paginationView.addHandlerClick(controlPagination); //Render buttons
 
   searchView.addHandlerInput(getSearchResults); //Search
 
-  tabView.addHandlerTab();
+  tabView.addHandlerTab(bookmarkList);
 })();

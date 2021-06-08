@@ -1,26 +1,9 @@
 import View from "./View";
 
-class ListView extends View {
-  _city = document.getElementById("city");
-  _parentElement = document.querySelector(".table");
-  _searchInput = document.getElementById("search-input");
-  _errorMessage = "No match found, please try with a different search!";
-
-  getCity() {
-    return this._city.value;
-  }
-
-  addHandlerRender(handler) {
-    window.addEventListener("load", function (e) {
-      handler();
-    });
-  }
-
-  addHandlerSelect(handler) {
-    this._city.addEventListener("change", function (e) {
-      handler();
-    });
-  }
+class BookmarksView extends View {
+  _parentElement = document.querySelector(".bookmarks");
+  _errorMessage = `No bookmarks yet!`;
+  _message = "";
 
   addHandlerBookmark(handler) {
     this._parentElement.addEventListener("click", function (e) {
@@ -31,7 +14,6 @@ class ListView extends View {
       handler(row.id);
     });
   }
-
   _generateMarkup() {
     const tableHead = `
     <table>
@@ -83,4 +65,4 @@ class ListView extends View {
   `;
   }
 }
-export default new ListView();
+export default new BookmarksView();

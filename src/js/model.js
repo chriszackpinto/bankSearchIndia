@@ -30,6 +30,11 @@ export const loadBankList = async function (city) {
     const data = await res.json();
 
     state.results = data.map((el) => {
+      let truth;
+      if (state.bookmarks.some((bookmark) => bookmark.ifsc === el.ifsc))
+        truth = "true";
+      else truth = "false";
+
       return {
         ifsc: el.ifsc + "",
         bankID: el.bank_id + "",
@@ -39,13 +44,14 @@ export const loadBankList = async function (city) {
         district: el.district + "",
         state: el.state + "",
         bankName: el.bank_name + "",
-        bookmarked: "false",
+        bookmarked: truth,
       };
     });
   } catch (error) {
     throw error;
   }
 };
+//Pagination
 export const getListResultsPage = function (page = state.page) {
   state.page = page;
   const start = (page - 1) * state.resultsPerPage;
@@ -53,7 +59,7 @@ export const getListResultsPage = function (page = state.page) {
 
   return state.searchResults.slice(start, end);
 };
-
+//Filter on type
 export const loadSearchResults = function (query) {
   state.query = query.toUpperCase();
 
@@ -62,12 +68,8 @@ export const loadSearchResults = function (query) {
   state.searchResults = state.results.filter((bank) =>
     Object.values(bank).some((_) => _.includes(state.query))
   );
-  // if (!state.query.length) {
-  //    state.searchResults = [];
-  //    return new Error(`Start typing to search!`);
-  // }
 };
-
+//Save to localStorage
 const localBookmarks = function () {
   localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
 };
@@ -95,6 +97,11 @@ export const deleteBookmark = function (id) {
   });
   localBookmarks();
 };
+
+(function () {
+  const storage = localStorage.getItem("bookmarks");
+  if (storage) state.bookmarks = JSON.parse(storage);
+})(); //Loading from localStorage
 
 const clearBookmarks = function () {
   localStorage.clear("bookmarks");
