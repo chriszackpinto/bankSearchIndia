@@ -8,5 +8,11 @@ class SearchView extends View {
   getQuery() {
     return this._searchInput.value;
   }
+
+  addHandlerInput(handler) {
+    this._searchInput.addEventListener("keyup", function (e) {
+      handler();
+    });
+  }
 }
 export default new SearchView();

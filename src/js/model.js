@@ -7,6 +7,7 @@ export const state = {
   query: " ",
   results: [],
   searchResults: [],
+  bookmarks: [],
 };
 // Timeout for API delay
 const timeout = function (seconds) {
@@ -38,6 +39,7 @@ export const loadBankList = async function (city) {
         district: el.district + "",
         state: el.state + "",
         bankName: el.bank_name + "",
+        bookmarked: "false",
       };
     });
   } catch (error) {
@@ -55,9 +57,46 @@ export const getListResultsPage = function (page = state.page) {
 export const loadSearchResults = function (query) {
   state.query = query.toUpperCase();
 
-  if (state.results.length === 0) return;
+  if (!state.results.length) return;
 
   state.searchResults = state.results.filter((bank) =>
     Object.values(bank).some((_) => _.includes(state.query))
   );
+  // if (!state.query.length) {
+  //    state.searchResults = [];
+  //    return new Error(`Start typing to search!`);
+  // }
 };
+
+const localBookmarks = function () {
+  localStorage.setItem("bookmarks", JSON.stringify(state.bookmarks));
+};
+
+export const addBookmark = function (id) {
+  state.results.forEach((el) => {
+    if (id === el.ifsc) {
+      el.bookmarked = "true"; //Mark bookmark true
+      state.bookmarks.push(el); //Add Bookmark
+    }
+  });
+  localBookmarks();
+};
+
+export const deleteBookmark = function (id) {
+  const index = state.bookmarks.findIndex((el) => {
+    el.ifsc === id;
+  });
+  state.bookmarks.splice(index, 1); //Delete bookmark
+
+  state.results.forEach((el) => {
+    if (id === el.ifsc) {
+      el.bookmarked = "false"; //Mark bookmark false
+    }
+  });
+  localBookmarks();
+};
+
+const clearBookmarks = function () {
+  localStorage.clear("bookmarks");
+};
+// clearBookmarks();

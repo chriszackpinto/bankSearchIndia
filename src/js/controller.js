@@ -1,6 +1,9 @@
+"use strict";
+
 import * as model from "./model";
 import listView from "./views/listView";
 import searchView from "./views/searchView";
+import tabView from "./views/tabView";
 import paginationView from "./views/paginationView";
 //polyfill es6 syntax to es5
 import "core-js/stable";
@@ -46,11 +49,24 @@ const renderResults = function () {
   paginationView.render(model.state); //Render pagination buttons
 };
 
+const controlBookmark = function (id) {
+  model.state.results.forEach((el) => {
+    if (el.ifsc === id && el.bookmarked === "false") model.addBookmark(id);
+    else if (el.ifsc === id && el.bookmarked === "true")
+      model.deleteBookmark(id);
+  });
+  console.log(model.state.bookmarks);
+};
+
 (function () {
   listView.addHandlerSelect(getBankList); //Render on city select
   listView.addHandlerRender(getBankList); // Render on page load
+  listView.addHandlerBookmark(controlBookmark); //Add Bookmark
+
   paginationView.addHandlerSelect(listLength); //Render on result size select
   paginationView.addHandlerClick(controlPagination); //Render buttons
 
-  listView.addHandlerInput(getSearchResults); //Search WIP
+  searchView.addHandlerInput(getSearchResults); //Search
+
+  tabView.addHandlerTab();
 })();

@@ -1,1 +1,79 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-primary: #5ec576;
+  --color-secondary: #ffcb03;
+  --color-primary-darker: #4bbb7d;
+  --color-secondary-darker: #ffbb00;
+}
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background-color: #f3f3f3;
+}
 
+header {
+  display: grid;
+  place-items: center;
+  height: 20vh;
+}
+header h1 {
+  font-size: 40px;
+}
+
+.btn {
+  background-color: var(--color-primary);
+  border: none;
+  padding: 1rem;
+  border-radius: 10rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  width: 200px;
+}
+.btn:hover {
+  background-color: var(--color-primary-darker);
+}
+button:focus {
+  outline: none;
+}
+
+.operations {
+  max-width: 1440px;
+  margin: 2rem 0 0;
+  background-color: #fff;
+}
+.operations__tab-container {
+  display: flex;
+  justify-content: center;
+}
+.operations__tab {
+  margin-right: 1.5rem;
+  transform: translateY(-50%);
+}
+.operations__tab--1 {
+  background-color: var(--color-secondary);
+}
+.operations__tab--1:hover {
+  background-color: var(--color-secondary-darker);
+}
+.operations__tab--active {
+  transform: translateY(-66%);
+}
+.operations__content {
+  display: none;
+}
+.operations__content--active {
+  display: block;
+}
+
+.bookmark {
+  fill: gray;
+  height: 25px;
+  cursor: pointer;
+}
+.bookmark--active {
+  fill: green;
+}
