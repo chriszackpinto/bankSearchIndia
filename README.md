@@ -2,10 +2,10 @@
 
 MVC Architecture used
 
-*List of bank branches across 5 cities in India
+* List of bank branches across 5 cities in India
 
-*Filter on Type (Client Side)
+* Filter on Type (Client Side)
 
-*Pagination with number of results
+* Pagination with number of results
 
-*Save favourite banks to local storage
+* Save favourite banks to local storage
