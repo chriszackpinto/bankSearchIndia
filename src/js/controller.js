@@ -48,12 +48,12 @@ const renderResults = function () {
 };
 
 const controlBookmark = function (id) {
+  //STABLE
   model.state.results.forEach((el) => {
     if (el.ifsc === id && el.bookmarked === "false") model.addBookmark(id);
     else if (el.ifsc === id && el.bookmarked === "true")
       model.deleteBookmark(id);
   });
-  console.log(model.state.bookmarks);
   bookmarkList();
 };
 
