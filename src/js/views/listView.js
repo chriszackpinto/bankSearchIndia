@@ -34,7 +34,16 @@ class ListView extends View {
 
   _generateMarkup() {
     const tableHead = `
-    <table>
+    <table width="1366px">
+    <col style="width:10%">
+	<col style="width:5%">
+	<col style="width:15%">
+	<col style="width:25%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:10%">
+	<col style="width:5%">
       <thead>
         <tr>
           <th>IFSC</th>

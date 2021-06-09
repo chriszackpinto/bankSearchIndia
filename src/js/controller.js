@@ -9,7 +9,6 @@ import bookmarksView from "./views/bookmarksView";
 //polyfill es6 syntax to es5
 import "core-js/stable";
 import "regenerator-runtime/runtime";
-import View from "./views/View";
 
 const getBankList = async function () {
   try {
@@ -63,6 +62,10 @@ const bookmarkList = function () {
   listView.render(model.getListResultsPage()); //render search list on tab change
 };
 
+const newFeature = function () {
+  console.log(`Welcome to the web application!`);
+};
+
 (function () {
   listView.addHandlerSelect(getBankList); //Render on city select
   listView.addHandlerRender(getBankList); // Render on page load
@@ -76,6 +79,6 @@ const bookmarkList = function () {
   searchView.addHandlerInput(getSearchResults); //Search
 
   tabView.addHandlerTab(bookmarkList);
-})();
 
-//not toggling? bookmark first
+  newFeature();
+})();

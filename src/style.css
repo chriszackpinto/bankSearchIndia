@@ -98,7 +98,6 @@ select:active {
 }
 .select--city {
   padding: 10px;
-  /* background-color: var(--color-tertiary); */
 }
 .search-input {
   width: 400px;
@@ -141,6 +140,7 @@ table {
   width: 100%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
   background-color: #fff;
+  /* table-layout: fixed; */
 }
 table thead tr {
   background-color: #009879;
@@ -149,7 +149,7 @@ table thead tr {
 
 table th,
 table td {
-  padding: 12px 15px;
+  padding: 5px 10px;
 }
 
 table tbody tr {

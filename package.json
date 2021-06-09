@@ -2,10 +2,10 @@
   "name": "fe",
   "version": "1.0.0",
   "description": "Front End Challenge to get a List of Banks",
-  "main": "index.html",
+  "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "chriszackpinto",
   "license": "ISC",
