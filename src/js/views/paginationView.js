@@ -26,7 +26,9 @@ class PaginationView extends View {
   _generateMarkup() {
     const curPage = this._data.page;
     const numPages = Math.ceil(
-      this._data.searchResults.length / this._data.resultsPerPage
+      this._data.query
+        ? this._data.searchResults.length / this._data.resultsPerPage
+        : this._data.results.length / this._data.resultsPerPage
     );
 
     const prevBtn = `<button data-goto='${

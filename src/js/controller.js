@@ -16,8 +16,10 @@ const getBankList = async function () {
     model.state.resultsPerPage = paginationView.getLength();
 
     await model.loadBankList(city); //Load search results from API City
+
+    listView.render(model.getListResultsPage()); //Render initial list
+    paginationView.render(model.state); //Render initial pagination buttons
   } catch (error) {
-    // console.error(`${error.message}`);
     listView.renderError(`${error.message}`);
   }
 };
@@ -39,11 +41,11 @@ const getSearchResults = function () {
   const query = searchView.getQuery();
   model.loadSearchResults(query);
 
-  renderResults();
+  renderResults(1);
 };
 
-const renderResults = function () {
-  listView.render(model.getListResultsPage()); //Render initial results
+const renderResults = function (number) {
+  listView.render(model.getListResultsPage(number)); //Render initial results
   paginationView.render(model.state); //Render pagination buttons
 };
 

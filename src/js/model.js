@@ -4,7 +4,7 @@ import { API_URL, TIMEOUT_SEC } from "./config.js";
 export const state = {
   page: 1,
   resultsPerPage: 25,
-  query: " ",
+  query: "",
   results: [],
   searchResults: [],
   bookmarks: [],
@@ -51,11 +51,13 @@ export const loadBankList = async function (city) {
     throw error;
   }
 };
+
 //Pagination
 export const getListResultsPage = function (page = state.page) {
   state.page = page;
   const start = (page - 1) * state.resultsPerPage;
   const end = page * state.resultsPerPage;
+  if (!state.query) return state.results.slice(start, end);
 
   return state.searchResults.slice(start, end);
 };
