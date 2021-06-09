@@ -16,7 +16,16 @@ class BookmarksView extends View {
   }
   _generateMarkup() {
     const tableHead = `
-    <table>
+    <table width="1280px">
+      <col style="width:8%">
+      <col style="width:6%">
+      <col style="width:10%">
+      <col style="width:34%">
+      <col style="width:8%">
+      <col style="width:8%">
+      <col style="width:8%">
+      <col style="width:10%">
+      <col style="width:8%">
       <thead>
         <tr>
           <th>IFSC</th>

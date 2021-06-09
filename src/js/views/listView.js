@@ -34,30 +34,30 @@ class ListView extends View {
 
   _generateMarkup() {
     const tableHead = `
-    <table width="1366px">
-    <col style="width:10%">
-	<col style="width:5%">
-	<col style="width:15%">
-	<col style="width:25%">
-	<col style="width:10%">
-	<col style="width:10%">
-	<col style="width:10%">
-	<col style="width:10%">
-	<col style="width:5%">
-      <thead>
-        <tr>
-          <th>IFSC</th>
-          <th>BANK ID</th>
-          <th>BRANCH</th>
-          <th>ADDRESS</th>
-          <th>CITY</th>
-          <th>DISTRICT</th>
-          <th>STATE</th>
-          <th>BANK NAME</th>
-          <th>BOOKMARK</th>
-        </tr>
-      </thead>
-      <tbody>`;
+    <table width="1280px">
+      <col style="width:8%">
+      <col style="width:6%">
+      <col style="width:10%">
+      <col style="width:34%">
+      <col style="width:8%">
+      <col style="width:8%">
+      <col style="width:8%">
+      <col style="width:10%">
+      <col style="width:8%">
+        <thead>
+          <tr>
+            <th>IFSC</th>
+            <th>BANK ID</th>
+            <th>BRANCH</th>
+            <th>ADDRESS</th>
+            <th>CITY</th>
+            <th>DISTRICT</th>
+            <th>STATE</th>
+            <th>BANK NAME</th>
+            <th>BOOKMARK</th>
+          </tr>
+        </thead>
+        <tbody>`;
 
     return `${tableHead}${this._data
       .map(this._generateMarkupPreview)
