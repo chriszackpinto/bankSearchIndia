@@ -85,16 +85,13 @@ export const addBookmark = function (id) {
 };
 
 export const deleteBookmark = function (id) {
-  const index = state.bookmarks.findIndex((el) => {
-    el.ifsc === id;
-  });
-  state.bookmarks.splice(index, 1); //Delete bookmark
-
   state.results.forEach((el) => {
     if (id === el.ifsc) {
       el.bookmarked = "false"; //Mark bookmark false
     }
   });
+  const index = state.bookmarks.findIndex((el) => el.ifsc === id);
+  state.bookmarks.splice(index, 1); //Delete bookmark
   localBookmarks();
 };
 

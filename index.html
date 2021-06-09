@@ -10,7 +10,7 @@
   </head>
   <body>
     <header>
-      <h1>Bank Branches</h1>
+      <h1>Bank Search India</h1>
     </header>
     <section class="operations">
       <div class="operations__tab-container">
@@ -32,14 +32,19 @@
         "
       >
         <form action="">
-          <select name="city" id="city">
+          <select name="city" id="city" class="select--city">
             <option value="BANGALORE">BANGALORE</option>
             <option value="CHENNAI">CHENNAI</option>
             <option value="DELHI">DELHI</option>
             <option value="GOA">GOA</option>
             <option value="MUMBAI">MUMBAI</option>
           </select>
-          <input type="text" id="search-input" />
+          <input
+            type="text"
+            id="search-input"
+            class="search-input"
+            placeholder="Start typing to search"
+          />
         </form>
         <div class="table"></div>
         <div class="pagination"></div>

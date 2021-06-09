@@ -77,3 +77,5 @@ const bookmarkList = function () {
 
   tabView.addHandlerTab(bookmarkList);
 })();
+
+//not toggling? bookmark first
